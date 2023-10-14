@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+        <div>
+            <h4>Денежные средства</h4>
+            {% for acc_currency in acc_currencies %}
+                <div>{{ acc_currency.amount }}{{ acc_currency.sign }}</div>
+            {% endfor %}
+        </div>
+        <div>
+            <h4>Акции</h4>
+            {% for acc_stock in acc_stocks %}
+                <div>{{ acc_stock.ticket }} - {{ acc_stock.amount }} - {{ acc_stock.avg }} | <a href="{% url 'stock:detail' acc_stock.pk %}">Продать</a></div>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{% url 'stock:list' %}">К списку акций</a>
+        </div>
+    {% endblock %}
+
+</body>
+</html>
